@@ -1,5 +1,4 @@
 function authUser(req, res, next) {
-  //   console.log(req);
   if (!req.user) {
     res.status(403);
     return res.send("You need to sign in");

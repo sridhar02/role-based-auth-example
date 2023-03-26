@@ -2,6 +2,7 @@ const express = require("express");
 const { authUser, authRole } = require("./basicAuth");
 const app = express();
 const { users, ROLE } = require("./data");
+const { use } = require("./routes/projects");
 const projectRouter = require("./routes/projects");
 
 app.use(express.json());
@@ -21,9 +22,10 @@ app.get("/admin", authUser, authRole(ROLE.ADMIN), (req, res) => {
 });
 
 function setUser(req, res, next) {
-  const userId = req.body.userId;
-  if (userId) {
-    req.user = users.find((user) => user.id === userId);
+  const { userId } = req.query;
+  const id = Number(userId);
+  if (id) {
+    req.user = users.find((user) => user.id === id);
   }
   next();
 }
