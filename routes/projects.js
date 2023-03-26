@@ -8,12 +8,15 @@ const { canViewProject, scopedProjects } = require("../permissions");
  * @openapi
  * /projects:
  *   get:
+ *     tags:
+ *     - Projects
  *     description: Route to get all projects for signedIn users!
  *     parameters:
  *      - name: userId
  *        in: query
  *        description: The userId of the loggedIn user, try with admin userId 1 or others with 2 & 3.
  *        required: true
+ *        default: ""
  *     responses:
  *       200:
  *         description: Returns a mysterious string.
@@ -26,16 +29,20 @@ router.get("/", authUser, (req, res) => {
  * @openapi
  * /projects/{projectId}:
  *   get:
+ *     tags:
+ *     - Projects
  *     description: Route to get a particular project details for signedIn users!
  *     parameters:
  *      - name: projectId
  *        in: path
  *        description: The projectId to the project details, try with project ids 1, 2 , 3
  *        required: true
+ *        default: ""
  *      - name: userId
  *        in: query
  *        description: The userId of the loggedIn user, try with admin userId 1 or others with 2 & 3.
  *        required: true
+ *        default: ""
  *     responses:
  *       200:
  *         description: Returns the project details.

@@ -31,6 +31,7 @@ router.get("/", (req, res) => {
  *        in: query
  *        description: The userId of the loggedIn user try with userIds 1,2, 3 where user 1 is admin & others are basic users.
  *        required: true
+ *        default: ""
  *     responses:
  *       200:
  *         description: Only logged in users can access this api route
@@ -51,6 +52,7 @@ router.get("/dashboard", authUser, (req, res) => {
  *        in: query
  *        description: The userId of the loggedIn user, try with userId 1 who is an admin, if you try with others it will not work.
  *        required: true
+ *        default: ""
  *     responses:
  *       200:
  *         description: Only logged & admins can only access this route

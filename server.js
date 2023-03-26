@@ -10,6 +10,8 @@ const { swaggerDocs } = require("./swagger");
 
 app.use(express.json());
 app.use(setUser);
+
+// routes
 app.use("/projects", projectRouter);
 app.use("/", homeRouter);
 
