@@ -6,7 +6,7 @@ const options = {
     openapi: "3.0.0",
     info: {
       title: "Role based basic auth",
-      description: "Example of CRUD API ",
+      description: "Basic auth operations of users & projects",
       version: "1.0.0",
     },
   },
