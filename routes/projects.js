@@ -4,10 +4,42 @@ const router = express.Router();
 const { projects } = require("../data");
 const { canViewProject, scopedProjects } = require("../permissions");
 
+/**
+ * @openapi
+ * /projects:
+ *   get:
+ *     description: Route to get all projects for signedIn users!
+ *     parameters:
+ *      - name: userId
+ *        in: query
+ *        description: The userId of the loggedIn user, try with admin userId 1 or others with 2 & 3.
+ *        required: true
+ *     responses:
+ *       200:
+ *         description: Returns a mysterious string.
+ */
 router.get("/", authUser, (req, res) => {
   res.json(scopedProjects(req.user, projects));
 });
 
+/**
+ * @openapi
+ * /projects/{projectId}:
+ *   get:
+ *     description: Route to get a particular project details for signedIn users!
+ *     parameters:
+ *      - name: projectId
+ *        in: path
+ *        description: The projectId to the project details, try with project ids 1, 2 , 3
+ *        required: true
+ *      - name: userId
+ *        in: query
+ *        description: The userId of the loggedIn user, try with admin userId 1 or others with 2 & 3.
+ *        required: true
+ *     responses:
+ *       200:
+ *         description: Returns the project details.
+ */
 router.get("/:projectId", setProject, authUser, authGetProject, (req, res) => {
   res.json(req.project);
 });
